@@ -1,6 +1,17 @@
-.slick-slide img {
-    display: block;
-    width: 1000px;
-    max-height: 1000px;
-    margin: auto;
-}  
+.carousel .slide {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    cursor: pointer;
+  }
+  
+  .carousel img {
+    width: 100%;
+    height: auto;
+  }
+  
+  .carousel h3 {
+    text-align: center;
+    margin-top: 10px;
+    color: #333; /* Cor do texto */
+  }
