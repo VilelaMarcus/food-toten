@@ -1,4 +1,4 @@
 * {
-    padding: 10px;
-    box-sizing: border-box; /* Para garantir que o padding não afete o tamanho total dos elementos */
-  }
+  padding: 10px;
+  box-sizing: border-box; /* Ensure padding does not affect total size */
+}

@@ -3,7 +3,7 @@ import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import "./Carousel.css";
-import { useNavigate } from "react-router-dom"; // Assumindo que você está usando react-router
+import { useNavigate } from "react-router-dom"; // Assuming you are using react-router
 
 const slides = [
   { src: "../../public/assets/comida.jpg", title: "SALGADOS", category: "salgados" },

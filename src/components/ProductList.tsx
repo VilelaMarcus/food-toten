@@ -6,18 +6,21 @@ import "./ProductList.css";
 
 const products = {
   salgados: [
-    { id: 1, name: "Coxinha", price: 5, src: "../../public/assets/coxinha.jpg" },
-    { id: 2, name: "Empada", price: 6, src: "../../public/assets/empada.jpg" },
+    { id: 1, name: "Coxinha", price: 5, src: "../../public/assets/salgados/coxinha.jpg" },
+    { id: 2, name: "Empada", price: 5, src: "../../public/assets/salgados/empadas.jpg" },
+    { id: 3, name: "Pao de Queijo", price: 5, src: "../../public/assets/salgados/pao.jpg" },
     // Adicione mais produtos aqui
   ],
   bebidas: [
-    { id: 1, name: "Refrigerante", price: 3, src: "../../public/assets/refrigerante.jpg" },
-    { id: 2, name: "Suco", price: 4, src: "../../public/assets/suco.jpg" },
+    { id: 1, name: "Refrigerante", price: 5, src: "../../public/assets/bebidas/coca.jpg" },
+    { id: 2, name: "Energetico", price: 5, src: "../../public/assets/bebidas/redbull.jpg" },
+    { id: 3, name: "SUco", price: 5, src: "../../public/assets/bebidas/suco.jpg" },
     // Adicione mais produtos aqui
   ],
   doces: [
-    { id: 1, name: "Brigadeiro", price: 2, src: "../../public/assets/brigadeiro.jpg" },
-    { id: 2, name: "Beijinho", price: 2, src: "../../public/assets/beijinho.jpg" },
+    { id: 3, name: "BEijinho", price: 5, src: "../../public/assets/doces/beijinho.jpg" },
+    { id: 3, name: "Brigadeiro", price: 5, src: "../../public/assets/doces/brigadeiro.jpg" },
+    { id: 3, name: "Trento", price: 5, src: "../../public/assets/doces/trento.jpg" },
     // Adicione mais produtos aqui
   ],
 };
