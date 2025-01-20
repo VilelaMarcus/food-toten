@@ -14,16 +14,17 @@ const products = {
   bebidas: [
     { id: 1, name: "Refrigerante", price: 5, src: "../../public/assets/bebidas/coca.jpg" },
     { id: 2, name: "Energetico", price: 5, src: "../../public/assets/bebidas/redbull.jpg" },
-    { id: 3, name: "SUco", price: 5, src: "../../public/assets/bebidas/suco.jpg" },
+    { id: 3, name: "Suco", price: 5, src: "../../public/assets/bebidas/suco.jpg" },
     // Adicione mais produtos aqui
   ],
   doces: [
-    { id: 3, name: "BEijinho", price: 5, src: "../../public/assets/doces/beijinho.jpg" },
+    { id: 3, name: "Beijinho", price: 5, src: "../../public/assets/doces/beijinho.jpg" },
     { id: 3, name: "Brigadeiro", price: 5, src: "../../public/assets/doces/brigadeiro.jpg" },
-    { id: 3, name: "Trento", price: 5, src: "../../public/assets/doces/trento.jpg" },
+    { id: 3, name: "Trento", price: 5, src: "../../public/assets/doces/trento.png" },
     // Adicione mais produtos aqui
   ],
 };
+
 
 const ProductList = () => {
   const { category } = useParams();
@@ -33,10 +34,12 @@ const ProductList = () => {
 
   return (
     <div className="product-list">
-      <button className="back-button" onClick={() => navigate("/")}>
-        <FaArrowLeft size={32} />
-      </button>
-      <h1>Produtos da categoria: {category}</h1>
+      <div style={{ display: "flex", flexDirection: "row" }}>
+        <button className="back-button" onClick={() => navigate("/")}>
+          <FaArrowLeft size={50} />
+        </button>
+        <h1>Produtos da categoria: {category}</h1>
+      </div>
       <div className="product-cards">
         {categoryProducts.map((product) => (
           <div key={product.id} className="product-card" onClick={() => addToCart(product)}>
