@@ -1,10 +1,11 @@
-import React from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import { FaArrowLeft } from "react-icons/fa";
 import { useCart } from "../context/CartContext";
 import "./ProductList.css";
 
-const products = {
+type Category = 'salgados' | 'bebidas' | 'doces';
+
+const products: Record<Category, { id: number; name: string; price: number; src: string }[]> = {
   salgados: [
     { id: 1, name: "Coxinha", price: 5, src: "../../public/assets/salgados/coxinha.jpg" },
     { id: 2, name: "Empada", price: 5, src: "../../public/assets/salgados/empadas.jpg" },
@@ -27,10 +28,10 @@ const products = {
 
 
 const ProductList = () => {
-  const { category } = useParams();
-  const navigate = useNavigate();
+  const { category } = useParams<{ category: string }>();
+  const categoryProducts = category ? products[category as Category] : [];
   const { addToCart } = useCart();
-  const categoryProducts = products[category] || [];
+  const navigate = useNavigate();
 
   return (
     <div className="product-list">
@@ -42,7 +43,7 @@ const ProductList = () => {
       </div>
       <div className="product-cards">
         {categoryProducts.map((product) => (
-          <div key={product.id} className="product-card" onClick={() => addToCart(product)}>
+          <div key={product.id} className="product-card" onClick={() => addToCart({ ...product, quantity: 1 })}>
             <img src={product.src} alt={product.name} />
             <h3>{product.name}</h3>
             <p>R${product.price}</p>

@@ -1,4 +1,3 @@
-import React from 'react';
 import './Menu.css';  // Para estilização
 import { FaShoppingCart } from 'react-icons/fa';  // Ícone de carrinho
 
