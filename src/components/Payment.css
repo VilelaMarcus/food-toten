@@ -1,12 +1,3 @@
-.back-button {
-  position: absolute;
-
-  background: none;
-  border: none;
-  cursor: pointer;
-  display: flex;
-}
-
 .payment {
   max-width: 600px;
   margin: 50px auto;
