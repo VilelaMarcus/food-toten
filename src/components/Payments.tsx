@@ -52,14 +52,13 @@ const Payment = () => {
 
   const handleConfirmarPedido = async () => {
     try {
-      // 1 - Mapeando os dados para as classes Order e Product
       const products = cart.map(
         (item: any) =>
           new Product(
-            item.id || Math.random(), // Garante um ID único caso não venha no item
+            item.id || Math.random(),
             item.name,
             item.price,
-            item.categoryId || 1, // Adiciona um valor padrão para a categoria
+            item.categoryId || 1,
             item.description || "Sem descrição",
             item.quantity
           )
@@ -67,7 +66,6 @@ const Payment = () => {
 
       const newOrder = new Order(clientName, clientCPF, products);
 
-      // 2 - Chamada para o backend para criar o pedido
       const response = await fetch("http://127.0.0.1:5000/api/v1/orders", {
         method: "POST",
         headers: {
@@ -77,7 +75,6 @@ const Payment = () => {
       });
 
       if (response.ok) {
-        // 3 - Redirecionar para a página raiz após sucesso
         alert("Pedido confirmado com sucesso!");
         clearCart();
         navigate("/");

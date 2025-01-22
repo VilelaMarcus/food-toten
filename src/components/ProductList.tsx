@@ -1,85 +1,55 @@
 import { useParams, useNavigate } from "react-router-dom";
 import { FaArrowLeft } from "react-icons/fa";
 import { useCart } from "../context/CartContext";
+import { useProducts } from "../context/ProductContext";
 import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import "./ProductList.css";
-
-type Category = "salgados" | "bebidas" | "doces";
-
-const products: Record<
-  Category,
-  { id: number; name: string; price: number; src: string }[]
-> = {
-  salgados: [
-    {
-      id: 1,
-      name: "Coxinha",
-      price: 5,
-      src: "../../public/assets/salgados/coxinha.jpg",
-    },
-    {
-      id: 2,
-      name: "Empada",
-      price: 5,
-      src: "../../public/assets/salgados/empadas.jpg",
-    },
-    {
-      id: 3,
-      name: "Pão de Queijo",
-      price: 5,
-      src: "../../public/assets/salgados/pao.jpg",
-    },
-  ],
-  bebidas: [
-    {
-      id: 1,
-      name: "Refrigerante",
-      price: 5,
-      src: "../../public/assets/bebidas/coca.jpg",
-    },
-    {
-      id: 2,
-      name: "Energetico",
-      price: 5,
-      src: "../../public/assets/bebidas/redbull.jpg",
-    },
-    {
-      id: 3,
-      name: "Suco",
-      price: 5,
-      src: "../../public/assets/bebidas/suco.jpg",
-    },
-    // Adicione mais produtos aqui
-  ],
-  doces: [
-    {
-      id: 3,
-      name: "Beijinho",
-      price: 5,
-      src: "../../public/assets/doces/beijinho.jpg",
-    },
-    {
-      id: 3,
-      name: "Brigadeiro",
-      price: 5,
-      src: "../../public/assets/doces/brigadeiro.jpg",
-    },
-    {
-      id: 3,
-      name: "Trento",
-      price: 5,
-      src: "../../public/assets/doces/trento.png",
-    },
-    // Adicione mais produtos aqui
-  ],
-};
+import { useEffect } from "react";
 
 const ProductList = () => {
   const { category } = useParams<{ category: string }>();
-  const categoryProducts = category ? products[category as Category] : [];
+  const { products, sellProduct } = useProducts();
   const { addToCart } = useCart();
   const navigate = useNavigate();
+
+  // Mapeamento de categorias para IDs
+  const categoryMap: Record<string, number> = {
+    salgados: 2,
+    bebidas: 1,
+    doces: 3,
+  };
+
+  // Garantir que a categoria seja válida e filtrada corretamente
+  const categoryProducts = category
+    ? products.filter(
+        (product) => product.categoryId === categoryMap[category.toLowerCase()]
+      )
+    : [];
+
+  const handleAddToCart = (
+    productId: number,
+    productName: string,
+    price: number
+  ) => {
+    const product = products.find((p) => p.id === productId);
+    if (product && product.quantity > 0) {
+      addToCart({
+        id: product.id,
+        name: productName,
+        price,
+        quantity: 1,
+        src: product.src,
+      });
+
+      sellProduct(productId, 1); // Diminui a quantidade do produto disponível
+      toast.success(`${productName} adicionado ao carrinho.`);
+    } else {
+      toast.error(`Produto ${productName} esgotado.`);
+    }
+  };
+
+  useEffect(() => console.log("TESTE 321: ", products));
 
   return (
     <div className="product-list">
@@ -90,20 +60,28 @@ const ProductList = () => {
         <h1>Produtos da categoria: {category}</h1>
       </div>
       <div className="product-cards">
-        {categoryProducts.map((product) => (
-          <div
-            key={product.id}
-            className="product-card"
-            onClick={() => {
-              addToCart({ ...product, quantity: 1 });
-              toast.success(`${product.name} adicionado ao carrinho.`);
-            }}
-          >
-            <img src={product.src} alt={product.name} />
-            <h3>{product.name}</h3>
-            <p>R${product.price}</p>
-          </div>
-        ))}
+        {categoryProducts.length > 0 ? (
+          categoryProducts.map((product) => (
+            <div
+              key={product.id}
+              className={`product-card ${
+                product.quantity === 0 ? "out-of-stock" : ""
+              }`}
+              onClick={() =>
+                handleAddToCart(product.id, product.name, product.value)
+              }
+            >
+              <img src={product.src} alt={product.name} />
+              <h3>{product.name}</h3>
+              <p>R${product.value.toFixed(2)}</p>
+              <p>Disponível: {product.quantity} unidade(s)</p>
+            </div>
+          ))
+        ) : (
+          <p className="empty-message">
+            Nenhum produto disponível nesta categoria.
+          </p>
+        )}
         <ToastContainer />
       </div>
     </div>
