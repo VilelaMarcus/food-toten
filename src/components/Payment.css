@@ -1,0 +1,88 @@
+.back-button {
+  position: absolute;
+
+  background: none;
+  border: none;
+  cursor: pointer;
+  display: flex;
+}
+
+.payment {
+  max-width: 600px;
+  margin: 50px auto;
+  padding: 30px;
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  background-color: #f9f9f9;
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.payment h1 {
+  text-align: center;
+  font-size: 2rem;
+  color: #333;
+  margin-bottom: 20px;
+}
+
+.payment-details {
+  margin-bottom: 20px;
+  padding: 20px;
+  border-radius: 5px;
+  background-color: #eaeaea;
+}
+
+.payment-details p {
+  font-size: 1.2rem;
+  margin: 5px 0;
+  color: #555;
+}
+
+.payment-summary {
+  padding: 20px;
+  background-color: #ffffff;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+.payment-summary h2 {
+  font-size: 1.5rem;
+  color: #333;
+  margin-bottom: 15px;
+}
+
+.payment-summary ul {
+  list-style: none;
+  padding: 0;
+}
+
+.payment-summary li {
+  font-size: 1.1rem;
+  margin-bottom: 10px;
+  padding: 10px;
+  background-color: #f0f0f0;
+  border-radius: 5px;
+}
+
+.payment-summary h3 {
+  font-size: 1.5rem;
+  color: #4caf50;
+  text-align: center;
+  margin-top: 20px;
+}
+
+.buttonSubmit {
+  width: 100%;
+  padding: 15px;
+  background-color: #4caf50;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  font-size: 1.2rem;
+  cursor: pointer;
+  transition: background-color 0.3s ease-in-out;
+  margin-top: 20px;
+}
+
+/* button:hover {
+  background-color: #45a049;
+} */
