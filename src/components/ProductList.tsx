@@ -26,11 +26,10 @@ const products: Record<
     },
     {
       id: 3,
-      name: "Pao de Queijo",
+      name: "Pão de Queijo",
       price: 5,
       src: "../../public/assets/salgados/pao.jpg",
     },
-    // Adicione mais produtos aqui
   ],
   bebidas: [
     {
